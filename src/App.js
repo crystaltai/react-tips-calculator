@@ -1,4 +1,5 @@
-import { Box, Container, Stack } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
+import Header from './components/Header/Header';
 import './App.css';
 
 function App() {
@@ -17,16 +18,20 @@ function App() {
         sx={{
           minWidth: 400,
           height: 700,
-          padding: '20px',
           bgcolor: '#ffffff',
           borderRadius: 3,
         }}
       >
-        <Stack spacing={2}>
+        <Header />
+        <Grid container spacing={0} direction='column'>
+          <Grid item>test</Grid>
+          <Grid item>test</Grid>
+        </Grid>
+        {/* <Stack spacing={2}>
           <div>test</div>
           <div>test</div>
           <div>test</div>
-        </Stack>
+        </Stack> */}
       </Box>
     </Container>
   );
