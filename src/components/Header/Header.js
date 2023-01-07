@@ -11,8 +11,8 @@ function Header() {
         borderTopRightRadius: 10,
       }}
     >
-      <Typography variant='h5' sx={{ color: 'white' }}>
-        Tip Calculator
+      <Typography variant='h5' sx={{ color: 'white', fontWeight: 700 }}>
+        Tips Calculator
       </Typography>
     </Box>
   );
