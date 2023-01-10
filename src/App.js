@@ -1,6 +1,6 @@
-import { Box, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
+import { Box, Container, FormControl, Grid, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
 import Header from './components/Header/Header';
-import { StyledLabels } from './App.styles';
+import { OutputContainer, StyledLabels, StyledOutput } from './App.styles';
 
 function App() {
   return (
@@ -43,8 +43,14 @@ function App() {
             />
           </FormControl>
 
-          <StyledLabels>Tip Amount:</StyledLabels>
-          <StyledLabels>Total Cost:</StyledLabels>
+          <OutputContainer>
+            <StyledLabels>Tip Amount:</StyledLabels>
+            <StyledOutput>X</StyledOutput>
+          </OutputContainer>
+          <OutputContainer>
+            <StyledLabels>Total Cost</StyledLabels>
+            <StyledOutput>X</StyledOutput>
+          </OutputContainer>
         </Stack>
       </Box>
     </Container>
