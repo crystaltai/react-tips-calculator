@@ -1,8 +1,27 @@
-import { Box, Container, FormControl, Grid, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
+import { useState } from 'react';
+import { Box, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
 import Header from './components/Header/Header';
 import { OutputContainer, StyledLabels, StyledOutput } from './App.styles';
 
 function App() {
+  // Define variables
+  const [initialCost, setInitialCost] = useState(0);
+  const [tipPercentage, setTipPercentage] = useState(0);
+  let tipAmount = initialCost * tipPercentage;
+  let totalCost = initialCost + tipAmount;
+
+  // Handle inputs for Initial Cost
+  const handleInitialCostInput = event => {
+    setInitialCost(Number(event.target.value));
+  };
+
+  // Handle inputs for Tip Percentage
+  const handleTipPercentageInput = event => {
+    setTipPercentage(Number(event.target.value));
+  };
+
+  console.log({ initialCost, tipPercentage });
+
   return (
     <Container
       maxWidth='md'
@@ -31,6 +50,7 @@ function App() {
               startAdornment={<InputAdornment position='start'>$</InputAdornment>}
               label='Initial Cost'
               type='number'
+              onChange={handleInitialCostInput}
             />
           </FormControl>
           <FormControl>
@@ -40,6 +60,7 @@ function App() {
               startAdornment={<InputAdornment position='start'>%</InputAdornment>}
               label='Tip Percentage'
               type='number'
+              onChange={handleTipPercentageInput}
             />
           </FormControl>
 
