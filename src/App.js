@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
+import { Box, Container, FormControl, Input, InputAdornment, Stack } from '@mui/material';
 import Header from './components/Header/Header';
-import { OutputContainer, StyledLabels, StyledOutput } from './App.styles';
+import { OutputContainer, StyledInput, StyledLabel, StyledOutput } from './App.styles';
 
 function App() {
   // Define variables
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <Container
-      maxWidth='md'
+      maxWidth='lg'
       sx={{
         bgcolor: '#E5E9F0',
         height: '100vh',
@@ -52,10 +52,10 @@ function App() {
         }}
       >
         <Header />
-        <Stack spacing={3} padding='20px'>
+        <Stack spacing={5} padding='20px' marginTop='20px'>
           <FormControl>
-            <InputLabel htmlFor='initial-cost'>Initial Cost</InputLabel>
-            <OutlinedInput
+            <StyledLabel htmlFor='initial-cost'>Initial Cost</StyledLabel>
+            <StyledInput
               id='initial-cost'
               startAdornment={<InputAdornment position='start'>$</InputAdornment>}
               label='Initial Cost'
@@ -64,8 +64,8 @@ function App() {
             />
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor='tip-percentage'>Tip Percentage</InputLabel>
-            <OutlinedInput
+            <StyledLabel htmlFor='initial-cost'>Tip Percentage</StyledLabel>
+            <StyledInput
               id='tip-percentage'
               startAdornment={<InputAdornment position='start'>%</InputAdornment>}
               label='Tip Percentage'
@@ -75,11 +75,11 @@ function App() {
           </FormControl>
 
           <OutputContainer>
-            <StyledLabels>Tip Amount:</StyledLabels>
+            <StyledLabel>Tip Amount:</StyledLabel>
             <StyledOutput>{isNaN(tipAmount) ? '' : `$ ${(Math.round(tipAmount * 100) / 100).toFixed(2)}`}</StyledOutput>
           </OutputContainer>
           <OutputContainer>
-            <StyledLabels>Total Cost:</StyledLabels>
+            <StyledLabel>Total Cost:</StyledLabel>
             <StyledOutput>{isNaN(totalCost) ? '' : `$ ${(Math.round(totalCost * 100) / 100).toFixed(2)}`}</StyledOutput>
           </OutputContainer>
         </Stack>
