@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
 import Header from './components/Header/Header';
 import { OutputContainer, StyledLabels, StyledOutput } from './App.styles';
@@ -7,8 +7,8 @@ function App() {
   // Define variables
   const [initialCost, setInitialCost] = useState(0);
   const [tipPercentage, setTipPercentage] = useState(0);
-  let tipAmount = initialCost * tipPercentage;
-  let totalCost = initialCost + tipAmount;
+  const [tipAmount, setTipAmount] = useState('-');
+  const [totalCost, setTotalCost] = useState('-');
 
   // Handle inputs for Initial Cost
   const handleInitialCostInput = event => {
@@ -20,7 +20,17 @@ function App() {
     setTipPercentage(Number(event.target.value));
   };
 
-  console.log({ initialCost, tipPercentage });
+  // Calculate Tip Amount & Total Cost
+  const calculateOutputs = () => {
+    if (initialCost > 0 && tipPercentage > 0) {
+      setTipAmount((initialCost * tipPercentage) / 100);
+      setTotalCost(initialCost + tipAmount);
+    }
+  };
+
+  useEffect(() => {
+    calculateOutputs();
+  });
 
   return (
     <Container
@@ -66,11 +76,11 @@ function App() {
 
           <OutputContainer>
             <StyledLabels>Tip Amount:</StyledLabels>
-            <StyledOutput>X</StyledOutput>
+            <StyledOutput>{isNaN(tipAmount) ? '' : `$ ${(Math.round(tipAmount * 100) / 100).toFixed(2)}`}</StyledOutput>
           </OutputContainer>
           <OutputContainer>
-            <StyledLabels>Total Cost</StyledLabels>
-            <StyledOutput>X</StyledOutput>
+            <StyledLabels>Total Cost:</StyledLabels>
+            <StyledOutput>{isNaN(totalCost) ? '' : `$ ${(Math.round(totalCost * 100) / 100).toFixed(2)}`}</StyledOutput>
           </OutputContainer>
         </Stack>
       </Box>
