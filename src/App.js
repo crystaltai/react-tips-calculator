@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, FormControl, Input, InputAdornment, Stack } from '@mui/material';
+import { Box, Container, FormControl, InputAdornment, Stack } from '@mui/material';
 import Header from './components/Header/Header';
 import { OutputContainer, StyledInput, StyledLabel, StyledOutput } from './App.styles';
 
@@ -28,9 +28,22 @@ function App() {
     }
   };
 
+  // Calculate outputs with any change of inputs
   useEffect(() => {
     calculateOutputs();
   });
+
+  // Outputs
+  const outputs = [
+    {
+      output: 'Tip Amount:',
+      result: tipAmount,
+    },
+    {
+      output: 'Total Cost:',
+      result: totalCost,
+    },
+  ];
 
   return (
     <Container
@@ -53,6 +66,7 @@ function App() {
       >
         <Header />
         <Stack spacing={5} padding='20px' marginTop='20px'>
+          {/* Inputs */}
           <FormControl>
             <StyledLabel htmlFor='initial-cost'>Initial Cost</StyledLabel>
             <StyledInput
@@ -74,14 +88,17 @@ function App() {
             />
           </FormControl>
 
-          <OutputContainer>
-            <StyledLabel>Tip Amount:</StyledLabel>
-            <StyledOutput>{isNaN(tipAmount) ? '' : `$ ${(Math.round(tipAmount * 100) / 100).toFixed(2)}`}</StyledOutput>
-          </OutputContainer>
-          <OutputContainer>
-            <StyledLabel>Total Cost:</StyledLabel>
-            <StyledOutput>{isNaN(totalCost) ? '' : `$ ${(Math.round(totalCost * 100) / 100).toFixed(2)}`}</StyledOutput>
-          </OutputContainer>
+          {/* Outputs */}
+          {outputs.map(output => {
+            return (
+              <OutputContainer>
+                <StyledLabel>{output.output}</StyledLabel>
+                <StyledOutput>
+                  {isNaN(output.result) ? '' : `$ ${(Math.round(output.result * 100) / 100).toFixed(2)}`}
+                </StyledOutput>
+              </OutputContainer>
+            );
+          })}
         </Stack>
       </Box>
     </Container>
