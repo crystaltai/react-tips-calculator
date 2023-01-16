@@ -6,7 +6,7 @@ Project to create tips calculator using React, allowing user to input initial co
 
 ![](https://github.com/crystaltai/react-tips-calculator/blob/main/demo/react-tips-calculator-demo.gif)
 
-## Run the Project
+## Run the project
 
 ```
 git clone git@github.com:crystaltai/react-tips-calculator.git
@@ -36,9 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 - [Font Awesome](https://fontawesome.com/)
 
-## Project Summary
-
-### Project Summary
+## Project summary
 
 1/16/23
 
