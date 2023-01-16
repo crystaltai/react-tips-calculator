@@ -12,12 +12,12 @@ function App() {
 
   // Handle inputs for Initial Cost
   const handleInitialCostInput = event => {
-    setInitialCost(Number(event.target.value));
+    setInitialCost(Math.abs(Number(event.target.value)));
   };
 
   // Handle inputs for Tip Percentage
   const handleTipPercentageInput = event => {
-    setTipPercentage(Number(event.target.value));
+    setTipPercentage(Math.abs(Number(event.target.value)));
   };
 
   // Calculate Tip Amount & Total Cost
