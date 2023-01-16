@@ -4,11 +4,15 @@ Project to create tips calculator using React, allowing user to input initial co
 
 **🔗 Live preview:** https://crystaltai.github.io/react-tips-calculator/
 
-![]()
+![](https://github.com/crystaltai/react-tips-calculator/blob/main/demo/react-tips-calculator-demo.gif)
 
 ## Run the Project
 
-### `npm run start`
+```
+git clone git@github.com:crystaltai/react-tips-calculator.git
+npm install
+npm run start
+```
 
 This will run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
