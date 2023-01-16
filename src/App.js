@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Box, Container, FormControl, InputAdornment, Stack } from '@mui/material';
+import { Box, Container, FormControl, InputAdornment, Stack, Button } from '@mui/material';
 import Header from './components/Header/Header';
-import { OutputContainer, StyledInput, StyledLabel, StyledOutput } from './App.styles';
+import { OutputContainer, SplitterContainer, StyledInput, StyledLabel, StyledOutput } from './App.styles';
 
 function App() {
   // Define variables
@@ -9,6 +9,8 @@ function App() {
   const [tipPercentage, setTipPercentage] = useState(0);
   const [tipAmount, setTipAmount] = useState('-');
   const [totalCost, setTotalCost] = useState('-');
+  const [peopleCount, setPeopleCount] = useState(1);
+  const [costPerPerson, setCostPerPerson] = useState('-');
 
   // Handle inputs for Initial Cost
   const handleInitialCostInput = event => {
@@ -20,11 +22,24 @@ function App() {
     setTipPercentage(Math.abs(Number(event.target.value)));
   };
 
+  // Handle inputs for ( - ) button
+  const handleMinusPeople = event => {
+    if (peopleCount > 1) {
+      setPeopleCount(peopleCount - 1);
+    }
+  };
+
+  // Handle inputs for ( + ) button
+  const handlePlusPeople = event => {
+    setPeopleCount(peopleCount + 1);
+  };
+
   // Calculate Tip Amount & Total Cost
   const calculateOutputs = () => {
     if (initialCost > 0 && tipPercentage > 0) {
       setTipAmount((initialCost * tipPercentage) / 100);
       setTotalCost(initialCost + tipAmount);
+      setCostPerPerson(totalCost / peopleCount);
     }
   };
 
@@ -34,7 +49,7 @@ function App() {
   });
 
   // Outputs
-  const outputs = [
+  const totalOutputs = [
     {
       output: 'Tip Amount:',
       result: tipAmount,
@@ -59,7 +74,7 @@ function App() {
       <Box
         sx={{
           minWidth: 400,
-          height: 700,
+          height: 600,
           bgcolor: '#ffffff',
           borderRadius: 3,
         }}
@@ -89,7 +104,7 @@ function App() {
           </FormControl>
 
           {/* Outputs */}
-          {outputs.map(output => {
+          {totalOutputs.map(output => {
             return (
               <OutputContainer>
                 <StyledLabel>{output.output}</StyledLabel>
@@ -99,6 +114,23 @@ function App() {
               </OutputContainer>
             );
           })}
+
+          {/* Splitter */}
+          <SplitterContainer spacing={1}>
+            <Button variant='contained' color='inherit' disableRipple disableElevation onClick={handleMinusPeople}>
+              -
+            </Button>
+            <StyledOutput>{peopleCount}</StyledOutput>
+            <Button variant='contained' color='inherit' disableRipple disableElevation onClick={handlePlusPeople}>
+              +
+            </Button>
+          </SplitterContainer>
+          <OutputContainer>
+            <StyledLabel>Cost per Person:</StyledLabel>
+            <StyledOutput>
+              {isNaN(costPerPerson) ? '' : `$ ${(Math.round(costPerPerson * 100) / 100).toFixed(2)}`}
+            </StyledOutput>
+          </OutputContainer>
         </Stack>
       </Box>
     </Container>

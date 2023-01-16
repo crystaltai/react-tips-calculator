@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Input, InputLabel, Typography } from '@mui/material';
+import { Input, InputLabel, Grid, Typography } from '@mui/material';
 
 const StyledLabel = styled(InputLabel)({
   fontWeight: 500,
@@ -28,4 +28,11 @@ const OutputContainer = styled('div')({
   justifyContent: 'space-between',
 });
 
-export { OutputContainer, StyledInput, StyledLabel, StyledOutput };
+const SplitterContainer = styled(Grid)({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '20px',
+  justifyContent: 'center',
+});
+
+export { OutputContainer, SplitterContainer, StyledInput, StyledLabel, StyledOutput };
